@@ -131,7 +131,7 @@ def fit(img,maxsize=512):
  
 
 
-def process(img):
+def process(im):
     im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=2)
     res = proc_pil_img(im, model)
     return res
