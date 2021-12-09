@@ -144,7 +144,7 @@ article = "<p style='text-align: center'><a href='https://github.com/Sxela/Arcan
 
 gr.Interface(
     process, 
-    gr.inputs.Image(type="pil", label="Input"), 
+    gr.inputs.Image(type="pil", label="Input",shape=(256,256)), 
     gr.outputs.Image(type="pil", label="Output"),
     title=title,
     description=description,
