@@ -7,6 +7,7 @@ os.system("pip -qq install facenet_pytorch")
 from facenet_pytorch import MTCNN
 from torchvision import transforms
 import torch, PIL
+torch.hub.download_url_to_file('https://www.giantfreakinrobot.com/wp-content/uploads/2021/02/adult-groot.jpg', 'groot.jpg')
 
 from tqdm.notebook import tqdm
 import gradio as gr
@@ -137,8 +138,8 @@ def process(im):
     return res
         
 title = "ArcaneGAN"
-description = "Gradio demo for ArcaneGan. To use it, simply upload your image, or click one of the examples to load them. Read more at the links below."
-article = "<p style='text-align: center'><a href='https://arxiv.org/abs/2104.05703'>Adversarial Open Domain Adaption for Sketch-to-Photo Synthesis</a> | <a href='https://github.com/Mukosame/Anime2Sketch'>Github Repo</a></p>"
+description = "Gradio demo for ArcaneGAN, portrait to Arcane style. To use it, simply upload your image, or click one of the examples to load them. Read more at the links below."
+article = "<p style='text-align: center'><a href='https://github.com/Sxela/ArcaneGAN'>Github Repo</a></p>"
 
 gr.Interface(
     process, 
@@ -147,4 +148,6 @@ gr.Interface(
     title=title,
     description=description,
     article=article,
+    examples=[['groot.jpg']],
+    enable_queue=True
    ).launch(debug=True)
