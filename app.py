@@ -147,6 +147,6 @@ gr.Interface(
     title=title,
     description=description,
     article=article,
-    examples=[['groot.jpg'],['bill.png'],['keanu.png'],['will.jpeg']],
+    examples=[['groot.jpg','version 0.3'],['bill.png','version 0.2'],['keanu.png','version 0.3'],['will.jpeg','version 0.2']],
     enable_queue=True
    ).launch(debug=True)
