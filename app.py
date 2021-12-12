@@ -1,6 +1,7 @@
 import os
 
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.3/ArcaneGANv0.3.jit")
+os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.2/ArcaneGANv0.2.jit")
 os.system("pip -qq install facenet_pytorch")
 
 
@@ -116,12 +117,6 @@ def proc_pil_img(input_image, model):
         output_image = PIL.Image.fromarray(output_image)
     return output_image
 
-
-
-model_path = './ArcaneGANv0.3.jit' 
-
-model = torch.jit.load(model_path,map_location='cpu').to('cpu').float().eval().cpu()
-
 def fit(img,maxsize=512):
   maxdim = max(*img.size)
   if maxdim>maxsize:
@@ -131,9 +126,11 @@ def fit(img,maxsize=512):
     img = img.resize(size)
   return img
  
-
-
-def process(im):
+def process(im, version):
+    if version == 'version 0.3':
+        model = torch.jit.load('./ArcaneGANv0.3.jit',map_location='cpu').to('cpu').float().eval().cpu()
+    else:
+        model = torch.jit.load('./ArcaneGANv0.2.jit',map_location='cpu').to('cpu').float().eval().cpu()
     im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=2)
     res = proc_pil_img(im, model)
     return res
@@ -144,7 +141,8 @@ article = "<div style='text-align: center;'>ArcaneGan by <a href='https://twitte
 
 gr.Interface(
     process, 
-    gr.inputs.Image(type="pil", label="Input",shape=(256,256)), 
+    [gr.inputs.Image(type="pil", label="Input",shape=(256,256)),gr.inputs.Radio(choices=['version 0.2','version 0.3'], type="value", default='version 0.3', label='version')
+], 
     gr.outputs.Image(type="pil", label="Output"),
     title=title,
     description=description,
