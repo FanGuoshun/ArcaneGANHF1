@@ -140,7 +140,7 @@ def process(im):
         
 title = "ArcaneGAN"
 description = "Gradio demo for ArcaneGAN, portrait to Arcane style. To use it, simply upload your image, or click one of the examples to load them. Read more at the links below."
-article = "<div style='text-align: center;'>ArcaneGan by <a href='https://twitter.com/devdef' target='_blank'>Alexander S</a> | <a href='https://github.com/Sxela/ArcaneGAN' target='_blank'>Github Repo</a> | <img src='https://visitor-badge.glitch.me/badge?page_id=akhaliq_arcanegan' alt='visitor badge'></div>"
+article = "<div style='text-align: center;'>ArcaneGan by <a href='https://twitter.com/devdef' target='_blank'>Alexander S</a> | <a href='https://github.com/Sxela/ArcaneGAN' target='_blank'>Github Repo</a> | <center><img src='https://visitor-badge.glitch.me/badge?page_id=akhaliq_arcanegan' alt='visitor badge'></center></div>"
 
 gr.Interface(
     process, 
