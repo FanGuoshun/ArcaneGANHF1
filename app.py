@@ -1,6 +1,6 @@
 import os
 
-os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.2/ArcaneGANv0.2.jit")
+os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.3/ArcaneGANv0.3.jit")
 os.system("pip -qq install facenet_pytorch")
 
 
@@ -118,7 +118,7 @@ def proc_pil_img(input_image, model):
 
 
 
-model_path = './ArcaneGANv0.2.jit' 
+model_path = './ArcaneGANv0.3.jit' 
 
 model = torch.jit.load(model_path,map_location='cpu').to('cpu').float().eval().cpu()
 
