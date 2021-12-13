@@ -12,6 +12,10 @@ torch.hub.download_url_to_file('https://hf.space/gradioiframe/akhaliq/AnimeGANv2
 from tqdm.notebook import tqdm
 import gradio as gr
 
+import torch
+
+print(torch.cuda.is_available())
+
 mtcnn = MTCNN(image_size=256, margin=80)
 
 # simplest ye olde trustworthy MTCNN for face detection with landmarks
