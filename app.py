@@ -90,8 +90,8 @@ size = 256
 means = [0.485, 0.456, 0.406]
 stds = [0.229, 0.224, 0.225]
 
-t_stds = torch.tensor(stds).cpu()[:,None,None]
-t_means = torch.tensor(means).cpu()[:,None,None]
+t_stds = torch.tensor(stds).cuda().half()[:,None,None]
+t_means = torch.tensor(means).cuda().half()[:,None,None]
 
 def makeEven(_x):
   return int(_x) if (_x % 2 == 0) else int(_x+1)
@@ -104,7 +104,7 @@ def tensor2im(var):
      return var.mul(t_stds).add(t_means).mul(255.).clamp(0,255).permute(1,2,0)
 
 def proc_pil_img(input_image, model):
-    transformed_image = img_transforms(input_image)[None,...].cpu()
+    transformed_image = img_transforms(input_image)[None,...].cuda().half()
             
     with torch.no_grad():
         result_image = model(transformed_image)[0]; print(result_image.shape)
@@ -112,6 +112,9 @@ def proc_pil_img(input_image, model):
         output_image = output_image.detach().cpu().numpy().astype('uint8')
         output_image = PIL.Image.fromarray(output_image)
     return output_image
+    
+    
+ 
 
 def fit(img,maxsize=512):
   maxdim = max(*img.size)
@@ -124,9 +127,9 @@ def fit(img,maxsize=512):
  
 def process(im, version):
     if version == 'version 0.3':
-        model = torch.jit.load('./ArcaneGANv0.3.jit',map_location='cpu').to('cpu').float().eval().cpu()
+        model = torch.jit.load('./ArcaneGANv0.3.jit').eval().cuda().half()
     else:
-        model = torch.jit.load('./ArcaneGANv0.2.jit',map_location='cpu').to('cpu').float().eval().cpu()
+        model = torch.jit.load('./ArcaneGANv0.2.jit').eval().cuda().half()
     im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=2)
     res = proc_pil_img(im, model)
     return res
