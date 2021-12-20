@@ -10,7 +10,6 @@ from tqdm.notebook import tqdm
 import gradio as gr
 import torch
 
-print(torch.cuda.is_available())
 
 mtcnn = MTCNN(image_size=256, margin=80)
 
