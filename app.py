@@ -8,7 +8,6 @@ import torch, PIL
 torch.hub.download_url_to_file('https://hf.space/gradioiframe/akhaliq/AnimeGANv2/file/bill.png', 'bill.png')
 from tqdm.notebook import tqdm
 import gradio as gr
-
 import torch
 
 print(torch.cuda.is_available())
