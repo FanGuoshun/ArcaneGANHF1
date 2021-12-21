@@ -125,13 +125,16 @@ def fit(img,maxsize=512):
     img = img.resize(size)
   return img
  
+modelv3 = torch.jit.load('./ArcaneGANv0.3.jit').eval().cuda().half()
+modelv2 = torch.jit.load('./ArcaneGANv0.2.jit').eval().cuda().half()
+
 def process(im, version):
     if version == 'version 0.3':
-        model = torch.jit.load('./ArcaneGANv0.3.jit').eval().cuda().half()
+        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=2)
+        res = proc_pil_img(im, modelv3)
     else:
-        model = torch.jit.load('./ArcaneGANv0.2.jit').eval().cuda().half()
-    im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=2)
-    res = proc_pil_img(im, model)
+        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=2)
+        res = proc_pil_img(im, modelv2)
     return res
         
 title = "ArcaneGAN"
