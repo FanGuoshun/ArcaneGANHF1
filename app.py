@@ -11,6 +11,7 @@ from tqdm.notebook import tqdm
 import gradio as gr
 import torch
 
+
 mtcnn = MTCNN(image_size=256, margin=80)
 
 # simplest ye olde trustworthy MTCNN for face detection with landmarks
