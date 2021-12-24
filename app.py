@@ -1,3 +1,5 @@
+import pystuck
+pystuck.run_server()
 import os
 os.system("pip install gradio==2.5.3")
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.3/ArcaneGANv0.3.jit")
