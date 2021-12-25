@@ -2,6 +2,7 @@ import pystuck
 pystuck.run_server()
 import os
 os.system("pip install gradio==2.5.3")
+os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.4/ArcaneGANv0.4.jit")
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.3/ArcaneGANv0.3.jit")
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.2/ArcaneGANv0.2.jit")
 os.system("pip -qq install facenet_pytorch")
@@ -128,11 +129,15 @@ def fit(img,maxsize=512):
     img = img.resize(size)
   return img
  
+modelv4 = torch.jit.load('./ArcaneGANv0.4.jit').eval().cuda().half()
 modelv3 = torch.jit.load('./ArcaneGANv0.3.jit').eval().cuda().half()
 modelv2 = torch.jit.load('./ArcaneGANv0.2.jit').eval().cuda().half()
 
 def process(im, version):
-    if version == 'version 0.3':
+    if version == 'version 0.4':
+        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=2)
+        res = proc_pil_img(im, modelv4)
+    elif version == 'version 0.3':
         im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=2)
         res = proc_pil_img(im, modelv3)
     else:
@@ -146,7 +151,7 @@ article = "<div style='text-align: center;'>ArcaneGan by <a href='https://twitte
 
 gr.Interface(
     process, 
-    [gr.inputs.Image(type="pil", label="Input",shape=(256,256)),gr.inputs.Radio(choices=['version 0.2','version 0.3'], type="value", default='version 0.3', label='version')
+    [gr.inputs.Image(type="pil", label="Input",shape=(256,256)),gr.inputs.Radio(choices=['version 0.2','version 0.3','version 0.4'], type="value", default='version 0.4', label='version')
 ], 
     gr.outputs.Image(type="pil", label="Output"),
     title=title,
