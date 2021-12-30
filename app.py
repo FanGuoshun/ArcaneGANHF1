@@ -2,7 +2,7 @@ import pystuck
 pystuck.run_server()
 
 import os
-os.system("pip install gradio==2.6.4")
+os.system("pip freeze")
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.4/ArcaneGANv0.4.jit")
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.3/ArcaneGANv0.3.jit")
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.2/ArcaneGANv0.2.jit")
