@@ -1,7 +1,6 @@
 import pystuck
 pystuck.run_server()
 
-
 import os
 os.system("pip freeze")
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.4/ArcaneGANv0.4.jit")
