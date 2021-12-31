@@ -135,13 +135,13 @@ modelv2 = torch.jit.load('./ArcaneGANv0.2.jit').eval().cuda().half()
 
 def process(im, version):
     if version == 'version 0.4':
-        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=1)
+        im = scale_by_face_size(im, target_face=256, max_res=1_500_000, max_upscale=1)
         res = proc_pil_img(im, modelv4)
     elif version == 'version 0.3':
-        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=1)
+        im = scale_by_face_size(im, target_face=256, max_res=1_500_000, max_upscale=1)
         res = proc_pil_img(im, modelv3)
     else:
-        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=1)
+        im = scale_by_face_size(im, target_face=256, max_res=1_500_000, max_upscale=1)
         res = proc_pil_img(im, modelv2)
     return res
         
