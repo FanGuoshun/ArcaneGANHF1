@@ -135,13 +135,13 @@ modelv2 = torch.jit.load('./ArcaneGANv0.2.jit').eval().cuda().half()
 
 def process(im, version):
     if version == 'version 0.4':
-        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=2)
+        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=1)
         res = proc_pil_img(im, modelv4)
     elif version == 'version 0.3':
-        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=2)
+        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=1)
         res = proc_pil_img(im, modelv3)
     else:
-        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=2)
+        im = scale_by_face_size(im, target_face=300, max_res=1_500_000, max_upscale=1)
         res = proc_pil_img(im, modelv2)
     return res
         
@@ -151,7 +151,7 @@ article = "<div style='text-align: center;'>ArcaneGan by <a href='https://twitte
 
 gr.Interface(
     process, 
-    [gr.inputs.Image(type="pil", label="Input",shape=(256,256)),gr.inputs.Radio(choices=['version 0.2','version 0.3','version 0.4'], type="value", default='version 0.4', label='version')
+    [gr.inputs.Image(type="pil", label="Input"),gr.inputs.Radio(choices=['version 0.2','version 0.3','version 0.4'], type="value", default='version 0.4', label='version')
 ], 
     gr.outputs.Image(type="pil", label="Output"),
     title=title,
