@@ -119,16 +119,6 @@ def proc_pil_img(input_image, model):
     
     
  
-
-def fit(img,maxsize=512):
-  maxdim = max(*img.size)
-  if maxdim>maxsize:
-    ratio = maxsize/maxdim
-    x,y = img.size
-    size = (int(x*ratio),int(y*ratio)) 
-    img = img.resize(size)
-  return img
- 
 modelv4 = torch.jit.load('./ArcaneGANv0.4.jit').eval().cuda().half()
 modelv3 = torch.jit.load('./ArcaneGANv0.3.jit').eval().cuda().half()
 modelv2 = torch.jit.load('./ArcaneGANv0.2.jit').eval().cuda().half()
