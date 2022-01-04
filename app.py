@@ -7,7 +7,6 @@ os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.4/Arcane
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.3/ArcaneGANv0.3.jit")
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.2/ArcaneGANv0.2.jit")
 os.system("pip -qq install facenet_pytorch")
-os.system("pip install gradio==2.5.3")
 from facenet_pytorch import MTCNN
 from torchvision import transforms
 import torch, PIL
@@ -148,6 +147,5 @@ gr.Interface(
     title=title,
     description=description,
     article=article,
-    examples=[['bill.png','version 0.3'],['keanu.png','version 0.4'],['will.jpeg','version 0.4']],
-    enable_queue=True
-    ).launch()
+    examples=[['bill.png','version 0.3'],['keanu.png','version 0.4'],['will.jpeg','version 0.4']]
+    ).launch(enable_queue=True)
