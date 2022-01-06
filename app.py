@@ -3,6 +3,7 @@ pystuck.run_server()
 
 
 import os
+os.system("pip install gradio==2.5.3")
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.4/ArcaneGANv0.4.jit")
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.3/ArcaneGANv0.3.jit")
 os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.2/ArcaneGANv0.2.jit")
@@ -149,5 +150,6 @@ gr.Interface(
     article=article,
     examples=[['bill.png','version 0.3'],['keanu.png','version 0.4'],['will.jpeg','version 0.4']],
     allow_flagging="never",
-    allow_screenshot=False
-    ).launch(enable_queue=True,cache_examples=False)
+    allow_screenshot=False,
+    enable_queue=True
+    ).launch()
