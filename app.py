@@ -149,7 +149,7 @@ gr.Interface(
     description=description,
     article=article,
     examples=[['bill.png','version 0.3'],['keanu.png','version 0.4'],['will.jpeg','version 0.4']],
-    allow_flagging="never",
+    allow_flagging=False,
     allow_screenshot=False,
     enable_queue=True
     ).launch()
