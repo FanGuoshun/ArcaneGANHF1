@@ -150,4 +150,4 @@ gr.Interface(
     examples=[['bill.png','version 0.3'],['keanu.png','version 0.4'],['will.jpeg','version 0.4']],
     allow_flagging="never",
     allow_screenshot=False
-    ).launch(enable_queue=True,cache_examples=True)
+    ).launch(enable_queue=True,cache_examples=False)
