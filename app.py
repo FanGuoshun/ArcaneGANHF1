@@ -4,9 +4,7 @@ pystuck.run_server()
 
 
 import os
-os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.4/ArcaneGANv0.4.jit")
-os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.3/ArcaneGANv0.3.jit")
-os.system("wget https://github.com/Sxela/ArcaneGAN/releases/download/v0.2/ArcaneGANv0.2.jit")
+from huggingface_hub import hf_hub_download
 os.system("pip -qq install facenet_pytorch")
 from facenet_pytorch import MTCNN
 from torchvision import transforms
@@ -14,6 +12,11 @@ import torch, PIL
 from tqdm.notebook import tqdm
 import gradio as gr
 import torch
+
+modelarcanev4 = hf_hub_download(repo_id="akhaliq/ArcaneGANv0.4", filename="ArcaneGANv0.4.jit")
+modelarcanev3 = hf_hub_download(repo_id="akhaliq/ArcaneGANv0.3", filename="ArcaneGANv0.3.jit")
+modelarcanev2 = hf_hub_download(repo_id="akhaliq/ArcaneGANv0.2", filename="ArcaneGANv0.2.jit")
+
 
 mtcnn = MTCNN(image_size=256, margin=80)
 
@@ -120,9 +123,9 @@ def proc_pil_img(input_image, model):
     
     
  
-modelv4 = torch.jit.load('./ArcaneGANv0.4.jit').eval().cuda().half()
-modelv3 = torch.jit.load('./ArcaneGANv0.3.jit').eval().cuda().half()
-modelv2 = torch.jit.load('./ArcaneGANv0.2.jit').eval().cuda().half()
+modelv4 = torch.jit.load(modelarcanev4).eval().cuda().half()
+modelv3 = torch.jit.load(modelarcanev3).eval().cuda().half()
+modelv2 = torch.jit.load(modelarcanev2).eval().cuda().half()
 
 def process(im, version):
     if version == 'version 0.4':
