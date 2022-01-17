@@ -2,7 +2,6 @@ import pystuck
 pystuck.run_server()
 
 
-
 import os
 from huggingface_hub import hf_hub_download
 os.system("pip -qq install facenet_pytorch")
