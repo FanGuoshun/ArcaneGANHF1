@@ -1,6 +1,7 @@
 import pystuck
 pystuck.run_server()
 
+
 import os
 os.system("pip install gradio==2.4.6")
 from huggingface_hub import hf_hub_download
