@@ -152,7 +152,7 @@ gr.Interface(
     title=title,
     description=description,
     article=article,
-    examples=[['./bill.png','version 0.3'],['./keanu.png','version 0.4'],['./will.jpeg','version 0.4']],
+    examples=[['images/bill.png','version 0.3'],['images/keanu.png','version 0.4'],['images/will.jpeg','version 0.4']],
     allow_flagging=False,
     allow_screenshot=False
     ).launch(enable_queue=True,cache_examples=True)
