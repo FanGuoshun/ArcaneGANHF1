@@ -5,7 +5,6 @@ pystuck.run_server()
 
 import os
 os.system("pip install gradio==2.4.6")
-os.system("pip freeze")
 from huggingface_hub import hf_hub_download
 os.system("pip -qq install facenet_pytorch")
 from facenet_pytorch import MTCNN
@@ -153,6 +152,8 @@ gr.Interface(
     title=title,
     description=description,
     article=article,
-    examples=[['images/bill.png','version 0.3'],['images/keanu.png','version 0.4'],['images/will.jpeg','version 0.4']],
+    examples=[['bill.png','version 0.3'],['keanu.png','version 0.4'],['will.jpeg','version 0.4']],
+    allow_flagging=False,
+    allow_screenshot=False,
     enable_queue=True
     ).launch()
