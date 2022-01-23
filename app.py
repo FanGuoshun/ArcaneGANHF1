@@ -116,7 +116,7 @@ def proc_pil_img(input_image, model):
     transformed_image = img_transforms(input_image)[None,...].cuda().half()
             
     with torch.no_grad():
-        result_image = model(transformed_image)[0]; print(result_image.shape)
+        result_image = model(transformed_image)[0]
         output_image = tensor2im(result_image)
         output_image = output_image.detach().cpu().numpy().astype('uint8')
         output_image = PIL.Image.fromarray(output_image)
