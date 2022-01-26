@@ -1,7 +1,6 @@
 import pystuck
 pystuck.run_server()
 
-
 import os
 os.system("pip freeze")
 from huggingface_hub import hf_hub_download
