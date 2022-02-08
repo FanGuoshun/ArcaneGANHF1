@@ -1,5 +1,4 @@
 import os
-os.system("pip install gradio==2.8.0b3")
 os.system("pip freeze")
 from huggingface_hub import hf_hub_download
 os.system("pip -qq install facenet_pytorch")
